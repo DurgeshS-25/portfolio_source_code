@@ -5,7 +5,7 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  
+
   useEffect(() => {
     const saved = localStorage.getItem('theme');
     if (saved) {
@@ -15,13 +15,13 @@ const Portfolio = () => {
     document.body.style.backgroundColor = saved === 'dark' ? '#0c0a09' : '#fafaf9';
     document.documentElement.style.backgroundColor = saved === 'dark' ? '#0c0a09' : '#fafaf9';
   }, []);
-  
+
   useEffect(() => {
     // Update body background color when theme changes
     document.body.style.backgroundColor = isDark ? '#0c0a09' : '#fafaf9';
     document.documentElement.style.backgroundColor = isDark ? '#0c0a09' : '#fafaf9';
   }, [isDark]);
-  
+
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
@@ -52,16 +52,16 @@ const Portfolio = () => {
       <header className={`w-full sticky top-0 z-50 backdrop-blur-md ${isDark ? 'bg-stone-950/90' : 'bg-white/90'} border-b ${border}`} style={{ margin: 0 }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <button 
+            <button
               onClick={() => scrollToSection('about')}
               className="font-mono font-bold text-lg tracking-tight text-emerald-500"
             >
               ~/durgesh
             </button>
-            
+
             <div className="hidden md:flex items-center space-x-8">
               {['About', 'Experience', 'Education', 'Projects', 'Contact'].map((item) => (
-                <button 
+                <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
                   className={`text-sm font-medium transition-colors ${
@@ -77,7 +77,7 @@ const Portfolio = () => {
                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             </div>
-            
+
             <div className="md:hidden flex items-center space-x-2">
               <button onClick={toggleTheme} className={`p-2 rounded-lg ${hover}`}>
                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
@@ -94,7 +94,7 @@ const Portfolio = () => {
         <div className={`md:hidden ${cardBg} border-b ${border}`}>
           <div className="px-4 py-3 space-y-2">
             {['About', 'Experience', 'Education', 'Projects', 'Contact'].map((item) => (
-              <button 
+              <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
                 className={`w-full px-3 py-2 rounded-md text-left transition-colors ${
@@ -118,9 +118,9 @@ const Portfolio = () => {
               {/* Profile Photo */}
               <div className="flex-shrink-0 order-first">
                 <div className={`w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 ${isDark ? 'border-emerald-500' : 'border-emerald-600'} shadow-xl mx-auto md:mx-0`}>
-                  <img 
-                    src="https://imgur.com/blX822m.jpg" 
-                    alt="Durgesh Sakhardande" 
+                  <img
+                    src="/profile.jpg"
+                    alt="Durgesh Sakhardande"
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.target.onerror = null;
@@ -129,7 +129,7 @@ const Portfolio = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="flex-1">
                 <div className="mb-6">
                   <p className={`font-mono text-sm ${accent} mb-2`}>$ whoami</p>
@@ -140,35 +140,36 @@ const Portfolio = () => {
                     Software Development Engineer
                   </p>
                 </div>
-                
+
                 <p className={`text-lg ${textMuted} mb-8 leading-relaxed font-light`}>
-                  Graduate student at Northeastern University building scalable backend systems 
-                  and microservices. I write clean code, design efficient architectures, and solve 
-                  complex problems.
+                  Backend engineer with a year of production experience building data ingestion
+                  pipelines, microservices, and search systems. I work mostly in Python and Java,
+                  and I care about the parts nobody sees: schema validation, failure handling,
+                  and knowing why a system is slow before touching it.
                 </p>
-                
+
                 <div className="flex flex-wrap gap-3">
-                  <a 
-                    href="https://drive.google.com/file/d/1limOafkc3vh9VnFuud0CU-WwF7xDhkVc/view?usp=sharing" 
-                    target="_blank" 
+                  <a
+                    href="/Durgesh_Sakhardande_Resume.pdf"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center px-5 py-2.5 ${accentBg} text-white rounded-md font-medium transition-colors`}
                   >
                     <Download size={16} className="mr-2" />
                     Resume
                   </a>
-                  <a 
-                    href="https://github.com/DurgeshS-25" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/DurgeshS-25"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center px-5 py-2.5 ${cardBg} border ${border} rounded-md font-medium ${hover} transition-colors`}
                   >
                     <Github size={16} className="mr-2" />
                     GitHub
                   </a>
-                  <a 
-                    href="https://www.linkedin.com/in/durgesh-s/" 
-                    target="_blank" 
+                  <a
+                    href="https://www.linkedin.com/in/durgesh-s/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center px-5 py-2.5 ${cardBg} border ${border} rounded-md font-medium ${hover} transition-colors`}
                   >
@@ -219,17 +220,17 @@ const Portfolio = () => {
         <section id="experience" className="w-full py-20 px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-10 tracking-tight flex items-center">
-              <span className={`font-mono text-sm ${accent} mr-3`}>02.</span>
+              <span className={`font-mono text-sm ${accent} mr-3`}>01.</span>
               Experience
             </h2>
-            
+
             <div className={`${cardBg} border ${border} rounded-xl p-8`}>
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                 <div>
                   <h3 className="text-xl font-semibold">Software Development Engineer</h3>
                   <p className={`${accent} font-medium`}>Community Dreams Foundation</p>
                 </div>
-                <span className={`text-sm font-mono ${textMuted} mt-1 md:mt-0`}>Jun 2025 - Present</span>
+                <span className={`text-sm font-mono ${textMuted} mt-1 md:mt-0`}>Jun 2025 - Jun 2026</span>
               </div>
               <ul className={`space-y-3 ${textMuted} font-light`}>
                 <li className="flex items-start">
@@ -253,7 +254,7 @@ const Portfolio = () => {
         <section id="education" className="w-full py-20 px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-10 tracking-tight flex items-center">
-              <span className={`font-mono text-sm ${accent} mr-3`}>03.</span>
+              <span className={`font-mono text-sm ${accent} mr-3`}>02.</span>
               Education
             </h2>
 
@@ -272,7 +273,7 @@ const Portfolio = () => {
               <div className="flex items-start">
                 <GraduationCap size={22} className={`mr-3 mt-0.5 ${accent} flex-shrink-0`} />
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Bachelor of Engineering in Electronics and Communication</h3>
+                  <h3 className="text-xl font-semibold">Bachelor of Engineering in Electronics and Telecommunication</h3>
                   <p className={`${textMuted} font-medium`}>University of Mumbai</p>
                   <p className={`text-sm font-mono ${textMuted} mt-2`}>Aug 2018 - May 2022</p>
                 </div>
@@ -285,23 +286,26 @@ const Portfolio = () => {
         <section id="projects" className="w-full py-20 px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-10 tracking-tight flex items-center">
-              <span className={`font-mono text-sm ${accent} mr-3`}>04.</span>
+              <span className={`font-mono text-sm ${accent} mr-3`}>03.</span>
               Featured Work
             </h2>
-            
+
             <div className="space-y-6">
               {/* AI Fitness Tracker */}
+              {/* TODO: paste the real repo URL below, then re-enable the link block. */}
               <div className={`${cardBg} border ${border} rounded-xl p-8 transition-all hover:border-emerald-500/50`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">AI Fitness Tracker</h3>
-                  <a 
-                    href="https://github.com/DurgeshS-25" 
-                    target="_blank" 
+                  {/*
+                  <a
+                    href="REPLACE_WITH_AI_FITNESS_TRACKER_REPO_URL"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`${textMuted} hover:text-emerald-500 transition-colors`}
                   >
                     <ExternalLink size={20} />
                   </a>
+                  */}
                 </div>
                 <p className={`text-sm font-mono ${textMuted} mb-4`}>
                   Spring Boot • RabbitMQ • Eureka • OpenAI API • MongoDB
@@ -323,17 +327,20 @@ const Portfolio = () => {
               </div>
 
               {/* Intelligent Research Assistant */}
+              {/* TODO: link your own repo here, or delete this whole card. */}
               <div className={`${cardBg} border ${border} rounded-xl p-8 transition-all hover:border-emerald-500/50`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">Intelligent Research Assistant</h3>
-                  <a 
-                    href="https://github.com/shalakapadalkar16/Intelligent-Research-Assistant" 
-                    target="_blank" 
+                  {/*
+                  <a
+                    href="REPLACE_WITH_YOUR_OWN_RESEARCH_ASSISTANT_REPO_URL"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`${textMuted} hover:text-emerald-500 transition-colors`}
                   >
                     <ExternalLink size={20} />
                   </a>
+                  */}
                 </div>
                 <p className={`text-sm font-mono ${textMuted} mb-4`}>
                   FastAPI • Elasticsearch • Streamlit • Python • Ollama API
@@ -345,7 +352,7 @@ const Portfolio = () => {
                   </li>
                   <li className="flex items-start">
                     <span className={`mr-2 mt-0.5 ${accent}`}>▹</span>
-                    <span>Integrated Ollama API for automated summarization with 85% relevance accuracy</span>
+                    <span>Integrated Ollama API for automated summarization over the indexed corpus</span>
                   </li>
                 </ul>
               </div>
@@ -354,9 +361,9 @@ const Portfolio = () => {
               <div className={`${cardBg} border ${border} rounded-xl p-8 transition-all hover:border-emerald-500/50`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">Urban Traffic Collision Pipeline</h3>
-                  <a 
-                    href="https://github.com/DurgeshS-25/Urban-Traffic-Collision-Pipeline" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/DurgeshS-25/Urban-Traffic-Collision-Pipeline"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`${textMuted} hover:text-emerald-500 transition-colors`}
                   >
@@ -385,25 +392,25 @@ const Portfolio = () => {
         <section id="contact" className="w-full py-20 px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <p className={`font-mono text-sm ${accent} mb-4`}>05. What's Next?</p>
+              <p className={`font-mono text-sm ${accent} mb-4`}>04. What's Next?</p>
               <h2 className="text-3xl font-bold mb-4 tracking-tight">Get In Touch</h2>
               <p className={`text-lg ${textMuted} font-light max-w-xl mx-auto`}>
-                I'm currently seeking roles in Software Development and Backend Engineering. 
+                I'm currently seeking roles in Software Development and Backend Engineering.
                 Let's connect if you have an opportunity or just want to chat.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <a 
+              <a
                 href="mailto:durgeshss25@gmail.com"
                 className={`inline-flex items-center px-6 py-3 ${accentBg} text-white rounded-md font-medium transition-colors`}
               >
                 <Mail size={18} className="mr-2" />
                 Send Email
               </a>
-              <a 
-                href="https://www.linkedin.com/in/durgesh-s/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/durgesh-s/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center px-6 py-3 ${cardBg} border ${border} rounded-md font-medium ${hover} transition-colors`}
               >
@@ -419,12 +426,8 @@ const Portfolio = () => {
                   <p className="font-medium">durgeshss25@gmail.com</p>
                 </div>
                 <div>
-                  <p className={`text-xs font-mono uppercase tracking-wider ${textMuted} mb-1`}>Phone</p>
-                  <p className="font-medium">(857) 334-7980</p>
-                </div>
-                <div>
                   <p className={`text-xs font-mono uppercase tracking-wider ${textMuted} mb-1`}>Location</p>
-                  <p className="font-medium">USA</p>
+                  <p className="font-medium">Irving, TX — open to remote</p>
                 </div>
               </div>
             </div>
@@ -439,23 +442,23 @@ const Portfolio = () => {
                 © 2026 Durgesh Sakhardande
               </p>
               <div className="flex items-center space-x-6">
-                <a 
-                  href="https://github.com/DurgeshS-25" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/DurgeshS-25"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={`${textMuted} hover:text-emerald-500 transition-colors`}
                 >
                   <Github size={20} />
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/durgesh-s/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/durgesh-s/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={`${textMuted} hover:text-emerald-500 transition-colors`}
                 >
                   <Linkedin size={20} />
                 </a>
-                <a 
+                <a
                   href="mailto:durgeshss25@gmail.com"
                   className={`${textMuted} hover:text-emerald-500 transition-colors`}
                 >
