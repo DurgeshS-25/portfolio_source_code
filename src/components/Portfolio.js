@@ -292,20 +292,17 @@ const Portfolio = () => {
 
             <div className="space-y-6">
               {/* AI Fitness Tracker */}
-              {/* TODO: paste the real repo URL below, then re-enable the link block. */}
               <div className={`${cardBg} border ${border} rounded-xl p-8 transition-all hover:border-emerald-500/50`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">AI Fitness Tracker</h3>
-                  {/*
                   <a
-                    href="REPLACE_WITH_AI_FITNESS_TRACKER_REPO_URL"
+                    href="https://github.com/DurgeshS-25/AIFitnessTracker"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${textMuted} hover:text-emerald-500 transition-colors`}
                   >
                     <ExternalLink size={20} />
                   </a>
-                  */}
                 </div>
                 <p className={`text-sm font-mono ${textMuted} mb-4`}>
                   Spring Boot • RabbitMQ • Eureka • OpenAI API • MongoDB
@@ -327,20 +324,17 @@ const Portfolio = () => {
               </div>
 
               {/* Intelligent Research Assistant */}
-              {/* TODO: link your own repo here, or delete this whole card. */}
               <div className={`${cardBg} border ${border} rounded-xl p-8 transition-all hover:border-emerald-500/50`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">Intelligent Research Assistant</h3>
-                  {/*
                   <a
-                    href="REPLACE_WITH_YOUR_OWN_RESEARCH_ASSISTANT_REPO_URL"
+                    href="https://github.com/DurgeshS-25/Intelligent-Research-Assistant"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${textMuted} hover:text-emerald-500 transition-colors`}
                   >
                     <ExternalLink size={20} />
                   </a>
-                  */}
                 </div>
                 <p className={`text-sm font-mono ${textMuted} mb-4`}>
                   FastAPI • Elasticsearch • Streamlit • Python • Ollama API
