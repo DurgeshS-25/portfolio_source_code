@@ -43,3 +43,102 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ---------- Visual effects ---------- */
+
+/* Dot grid behind the hero, faded out toward the edges. */
+.hero-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgb(16 185 129 / 0.18) 1px, transparent 0);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Slowly drifting emerald glow behind the hero. */
+.hero-glow {
+  background: radial-gradient(circle, rgb(16 185 129 / 0.22), transparent 65%);
+  filter: blur(40px);
+  animation: glow-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes glow-drift {
+  0% { transform: translate(-10%, -5%) scale(1); }
+  50% { transform: translate(15%, 10%) scale(1.15); }
+  100% { transform: translate(-5%, 15%) scale(0.95); }
+}
+
+/* Rotating gradient ring around the avatar. */
+.avatar-ring {
+  background: conic-gradient(from 0deg, #10b981, transparent 35%, #34d399 60%, transparent 85%, #10b981);
+  animation: ring-spin 8s linear infinite;
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Emerald highlight that sweeps around a card's border on hover/focus. */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-card {
+  position: relative;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--glow-angle), transparent 0 65%, #10b981 82%, #6ee7b7 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-card:hover::before,
+.glow-card:focus-within::before {
+  opacity: 1;
+  animation: glow-sweep 3s linear infinite;
+}
+
+@keyframes glow-sweep {
+  to { --glow-angle: 360deg; }
+}
+
+/* Blinking terminal cursor. */
+.terminal-cursor {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Theme switch: the new theme grows out of the toggle as a circle (see useTheme). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow,
+  .avatar-ring,
+  .glow-card::before,
+  .terminal-cursor {
+    animation: none !important;
+  }
+}
