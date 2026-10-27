@@ -80,6 +80,18 @@ export const usesSkill = (item, skill) =>
 
 export const projects = [
   {
+    name: 'Redis & Cache Observability for Elemo',
+    repo: 'https://github.com/opcotech/elemo/pull/492',
+    stack: ['Go', 'Prometheus', 'Redis'],
+    tags: ['Open Source', 'Observability'],
+    bullets: [
+      'Merged open-source contribution adding Redis and cache metrics to Elemo, a Go project management platform',
+      'Exported connection pool gauges and a pool-timeout counter, read live from the Redis client on every scrape',
+      'Added a cache lookup counter labeled hit, miss, and error, making cache hit ratio a one-line dashboard query',
+      "Instrumented the shared repository read path instead of the library's per-instance stats, which counted Redis errors as misses",
+    ],
+  },
+  {
     name: 'AI Fitness Tracker',
     repo: 'https://github.com/DurgeshS-25/AIFitnessTracker',
     stack: ['Spring Boot', 'RabbitMQ', 'Eureka', 'OpenAI API', 'MongoDB'],
