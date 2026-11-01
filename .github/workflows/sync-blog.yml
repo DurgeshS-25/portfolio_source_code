@@ -1,0 +1,49 @@
+# Pulls new posts from Medium (and any other source in scripts/blog/config.mjs) once a day and
+# commits src/data/posts.json when it changed. That push triggers the Netlify deploy.
+# Run it by hand from the Actions tab ("Run workflow") right after publishing to skip the wait.
+name: Sync blog
+
+on:
+  schedule:
+    - cron: '0 13 * * *' # daily, 13:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-blog
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Test the parser
+        run: npm run test:blog
+
+      # Exits non-zero if a source fails, so you get GitHub's failure email; posts.json is left as it was.
+      - name: Sync posts
+        run: npm run sync:blog
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- src/data/posts.json; then
+            echo "No new posts."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/posts.json
+          git commit -m 'chore(blog): sync posts'
+          git push

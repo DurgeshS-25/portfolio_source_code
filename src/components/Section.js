@@ -2,8 +2,8 @@ import Reveal from './Reveal';
 import { accent } from './styles';
 
 // Page section wrapper. When `title` is given, renders the standard numbered heading.
-// `background` renders decorative layers behind the content.
-const Section = ({ id, number, title, width = 'max-w-5xl', background, children }) => (
+// `background` renders decorative layers behind the content. `headingAs` lets a page's main section use h1.
+const Section = ({ id, number, title, width = 'max-w-5xl', background, headingAs: Heading = 'h2', children }) => (
   <section
     id={id}
     className="relative w-full py-20 px-4 scroll-mt-16"
@@ -13,11 +13,11 @@ const Section = ({ id, number, title, width = 'max-w-5xl', background, children 
     <div className={`relative ${width} mx-auto`}>
       {title && (
         <Reveal>
-          <h2 id={`${id}-heading`} className="text-3xl font-bold mb-10 tracking-tight flex items-center">
+          <Heading id={`${id}-heading`} className="text-3xl font-bold mb-10 tracking-tight flex items-center">
             {number && <span className={`font-mono text-sm ${accent} mr-3`}>{number}.</span>}
             {title}
             <span aria-hidden="true" className="ml-4 h-px flex-1 max-w-xs bg-gradient-to-r from-emerald-500/40 to-transparent" />
-          </h2>
+          </Heading>
         </Reveal>
       )}
       {children}

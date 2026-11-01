@@ -16,6 +16,7 @@ export const profile = {
   resume: 'https://drive.google.com/file/d/1tdaY9bh36MepJ3EtwMQkw_HhABttV6I7/view?usp=sharing',
   github: 'https://github.com/DurgeshS-25',
   linkedin: 'https://www.linkedin.com/in/durgesh-s/',
+  medium: 'https://medium.com/@durgeshss25',
   contactBlurb:
     "I'm currently seeking roles in Software Development and Backend Engineering. " +
     "Let's connect if you have an opportunity or just want to chat.",
@@ -26,8 +27,12 @@ export const navItems = [
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'projects', label: 'Projects' },
+  { id: 'blog', label: 'Blog', href: '/blog' },
   { id: 'contact', label: 'Contact' },
 ];
+
+// Items with an `href` are separate pages; the rest are sections on the home page.
+export const sectionIds = navItems.filter((item) => !item.href).map((item) => item.id);
 
 export const skills = [
   { category: 'Languages', items: ['Java', 'Python', 'JavaScript', 'SQL', 'TypeScript'] },

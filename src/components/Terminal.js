@@ -24,7 +24,7 @@ const Line = ({ line, index }) => {
       {href ? (
         <a
           href={href}
-          target={href.startsWith('mailto:') ? undefined : '_blank'}
+          target={/^https?:/.test(href) ? '_blank' : undefined}
           rel="noopener noreferrer"
           className="underline decoration-emerald-500/40 underline-offset-2 hover:decoration-emerald-400"
         >

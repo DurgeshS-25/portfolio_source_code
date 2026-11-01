@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import App from './App';
 import { navItems, profile } from './data/portfolio';
 
@@ -14,6 +14,7 @@ test('renders the name heading, every nav item, and the resume link', () => {
   navItems.forEach(({ label }) => {
     expect(nav).toHaveTextContent(label);
   });
+  expect(within(nav).getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog');
   expect(screen.getByRole('link', { name: /resume/i })).toHaveAttribute('href', profile.resume);
 });
 
@@ -44,4 +45,13 @@ test('terminal runs a command typed by the user', () => {
   fireEvent.change(input, { target: { value: 'education' } });
   fireEvent.keyDown(input, { key: 'Enter' });
   expect(screen.getByRole('log', { name: 'Terminal output' })).toHaveTextContent('Northeastern University');
+});
+
+test('home page teases the latest posts before Contact and links to /blog', () => {
+  render(<App />);
+  const teaser = screen.getByRole('region', { name: /latest writing/i });
+  expect(within(teaser).getByRole('heading', { level: 2 })).toHaveTextContent('04.Latest Writing');
+  expect(within(teaser).getAllByRole('article').length).toBeGreaterThan(0);
+  expect(within(teaser).getByRole('link', { name: /all posts/i })).toHaveAttribute('href', '/blog');
+  expect(screen.getByText("05. What's Next?")).toBeInTheDocument();
 });

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Stories by Durgesh Sakhardande on Medium]]></title>
+        <link>https://medium.com/@durgeshss25?source=rss-9a448315742f------2</link>
+        <item>
+            <title><![CDATA[Idempotent OCR Ingestion]]></title>
+            <link>https://medium.com/@durgeshss25/idempotent-ocr-ingestion-2847c9b03eaa?source=rss-9a448315742f------2</link>
+            <guid isPermaLink="false">https://medium.com/p/2847c9b03eaa</guid>
+            <category><![CDATA[ocr]]></category>
+            <category><![CDATA[healthcare]]></category>
+            <dc:creator><![CDATA[Durgesh Sakhardande]]></dc:creator>
+            <pubDate>Sat, 21 Feb 2026 15:01:18 GMT</pubDate>
+            <atom:updated>2026-02-22T09:00:00.000Z</atom:updated>
+            <content:encoded><![CDATA[<h3>Idempotent OCR Ingestion</h3><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*cover.gif" /><figcaption>A caption that should not appear</figcaption></figure><p><em>The OCR part was straightforward.</em> Making it bulletproof was a different story &amp; that&#39;s what this post is about.</p><pre>const secret = "code should not appear";</pre><p>Second paragraph, led by <a href="https://example.com"><strong>a link</strong></a>.</p><img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=2847c9b03eaa" width="1" height="1" alt="">]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Shopping Cart Abandonment in E-commerce]]></title>
+            <link>https://medium.com/@durgeshss25/shopping-cart-abandonment-028e229297db?source=rss-9a448315742f------2</link>
+            <guid isPermaLink="false">https://medium.com/p/028e229297db</guid>
+            <dc:creator><![CDATA[Durgesh Sakhardande]]></dc:creator>
+            <pubDate>Mon, 04 Mar 2024 18:20:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>A post with no images at all.</p><img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=028e229297db" width="1" height="1" alt="">]]></content:encoded>
+        </item>
+    </channel>
+</rss>

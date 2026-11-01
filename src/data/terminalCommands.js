@@ -1,10 +1,9 @@
-import { education, experience, navItems, profile, projects, skills } from './portfolio';
+import { formatDate, latestPosts } from './blog';
+import { education, experience, profile, projects, sectionIds, skills } from './portfolio';
 
 // Pure command handlers for the hero terminal.
 // runCommand returns { lines, action?, clear? }. A line is a string or { text, tone?, href? }.
 // Actions are performed by the Terminal component: { type: 'open', url } | { type: 'goto', id } | { type: 'theme' }.
-
-const sectionIds = navItems.map((item) => item.id);
 
 const COMMANDS = {
   help: 'list available commands',
@@ -15,6 +14,7 @@ const COMMANDS = {
   experience: 'where I have worked',
   projects: 'featured work, with repo links',
   education: 'degrees',
+  blog: 'latest posts',
   contact: 'how to reach me',
   resume: 'open my resume',
   github: 'open my GitHub',
@@ -25,7 +25,7 @@ const COMMANDS = {
 
 export const commandNames = [
   'help', 'whoami', 'ls', 'goto', 'cd', 'skills', 'experience', 'projects', 'education',
-  'contact', 'resume', 'github', 'linkedin', 'theme', 'clear', 'sudo',
+  'blog', 'contact', 'resume', 'github', 'linkedin', 'theme', 'clear', 'sudo',
 ];
 
 const hireMeUrl = `mailto:${profile.email}?subject=${encodeURIComponent("Let's talk about a role")}`;
@@ -122,6 +122,19 @@ export const runCommand = (raw) => {
       return {
         lines: education.map((e) => `${e.degree} — ${e.school}  (${e.period})`),
       };
+    case 'blog': {
+      const latest = latestPosts(3);
+      if (!latest.length) return { lines: [{ text: 'No posts yet.', tone: 'muted' }] };
+      return {
+        lines: [
+          ...latest.flatMap((p) => [
+            { text: p.title, tone: 'accent', href: p.url },
+            { text: `  ${formatDate(p.publishedAt)} · ${p.readingTime} min read`, tone: 'muted' },
+          ]),
+          { text: 'all posts → /blog', href: '/blog' },
+        ],
+      };
+    }
     case 'contact':
       return {
         lines: [

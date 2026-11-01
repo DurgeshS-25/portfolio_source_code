@@ -1,0 +1,45 @@
+[
+  {
+    "id": "medium:2847c9b03eaa",
+    "title": "How I Built an Idempotent OCR Ingestion Pipeline Using Supabase Edge Functions",
+    "url": "https://medium.com/@durgeshss25/how-i-built-an-idempotent-ocr-ingestion-pipeline-using-supabase-edge-functions-2847c9b03eaa",
+    "publishedAt": "2026-02-21T15:01:18.000Z",
+    "updatedAt": "2026-02-21T15:01:18.575Z",
+    "excerpt": "The OCR part was straightforward. Making it bulletproof was a different story. At Community Dreams Foundation, I built a pipeline that processes medical lab reports — pulling out biomarkers from…",
+    "coverImage": "https://cdn-images-1.medium.com/max/1024/1*Gxz_mOE1es5NPhKNs4R-sA.gif",
+    "tags": [
+      "ocr",
+      "ai",
+      "healthcare"
+    ],
+    "source": "medium",
+    "readingTime": 4
+  },
+  {
+    "id": "medium:028e229297db",
+    "title": "Building a Fully Local Agentic RAG Chatbot — Lessons from a Hackathon",
+    "url": "https://medium.com/@durgeshss25/building-a-fully-local-agentic-rag-chatbot-lessons-from-a-hackathon-028e229297db",
+    "publishedAt": "2026-02-20T23:40:25.000Z",
+    "updatedAt": "2026-02-20T23:40:25.832Z",
+    "excerpt": "No cloud APIs. No OpenAI. No monthly bills. Just Python, FAISS, and Ollama running on your machine. Most RAG tutorials send your documents to OpenAI, Pinecone, or some cloud vector store. That works…",
+    "coverImage": null,
+    "tags": [
+      "hackathons",
+      "machine-learning"
+    ],
+    "source": "medium",
+    "readingTime": 4
+  },
+  {
+    "id": "medium:8246029e5659",
+    "title": "Shopping Cart Abandonment in E-commerce",
+    "url": "https://medium.com/@durgeshss25/shopping-cart-abandonment-in-e-commerce-8246029e5659",
+    "publishedAt": "2024-09-28T21:33:26.000Z",
+    "updatedAt": "2024-09-29T15:08:05.770Z",
+    "excerpt": "Shopping cart abandonment is a key topic of study in CSYE 7280: E-commerce Website Design, led by Professor Vishal Chawla. It refers to the scenario where customers add items to their shopping cart…",
+    "coverImage": "https://cdn-images-1.medium.com/max/1024/0*O70dQlKIdhRhPCZp",
+    "tags": [],
+    "source": "medium",
+    "readingTime": 4
+  }
+]
