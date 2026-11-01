@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import App from './App';
 import { navItems, profile } from './data/portfolio';
 
@@ -14,6 +14,7 @@ test('renders the name heading, every nav item, and the resume link', () => {
   navItems.forEach(({ label }) => {
     expect(nav).toHaveTextContent(label);
   });
+  expect(within(nav).getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog');
   expect(screen.getByRole('link', { name: /resume/i })).toHaveAttribute('href', profile.resume);
 });
 

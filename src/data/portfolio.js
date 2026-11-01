@@ -27,8 +27,12 @@ export const navItems = [
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'projects', label: 'Projects' },
+  { id: 'blog', label: 'Blog', href: '/blog' },
   { id: 'contact', label: 'Contact' },
 ];
+
+// Items with an `href` are separate pages; the rest are sections on the home page.
+export const sectionIds = navItems.filter((item) => !item.href).map((item) => item.id);
 
 export const skills = [
   { category: 'Languages', items: ['Java', 'Python', 'JavaScript', 'SQL', 'TypeScript'] },

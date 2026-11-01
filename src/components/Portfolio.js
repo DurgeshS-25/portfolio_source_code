@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { education, experience, navItems, projects, usesSkill } from '../data/portfolio';
+import { useCallback, useEffect, useState } from 'react';
+import { education, experience, projects, sectionIds, usesSkill } from '../data/portfolio';
 import useActiveSection from '../hooks/useActiveSection';
 import useTheme from '../hooks/useTheme';
 import Contact from './Contact';
@@ -9,8 +9,6 @@ import Hero from './Hero';
 import ProjectCard from './ProjectCard';
 import Section from './Section';
 import SiteLayout from './SiteLayout';
-
-const sectionIds = navItems.map((item) => item.id);
 
 // Sections after "about" get numbered headings (01., 02., ...) in nav order.
 const sectionNumber = (id) => String(sectionIds.indexOf(id)).padStart(2, '0');
@@ -31,6 +29,15 @@ const Portfolio = () => {
     },
     [setActiveSection]
   );
+
+  // Links from other pages (e.g. /blog) arrive as /#section. The browser can't jump there itself
+  // because the sections don't exist until React renders, so do it once on mount.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!sectionIds.includes(id)) return;
+    setActiveSection(id);
+    document.getElementById(id)?.scrollIntoView();
+  }, [setActiveSection]);
 
   const matchState = (item) => {
     if (!selectedSkill) return { highlighted: false, dimmed: false };

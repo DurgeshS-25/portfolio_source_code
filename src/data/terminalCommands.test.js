@@ -1,5 +1,6 @@
 import { complete, runCommand } from './terminalCommands';
-import { navItems, profile } from './portfolio';
+import { posts } from './blog';
+import { profile, sectionIds } from './portfolio';
 
 const text = (lines) => lines.map((l) => (typeof l === 'string' ? l : l.text)).join('\n');
 
@@ -23,7 +24,14 @@ test('goto and cd return a navigation action for valid sections only', () => {
   expect(runCommand('cd ~/contact/').action).toEqual({ type: 'goto', id: 'contact' });
   const bad = runCommand('goto nowhere');
   expect(bad.action).toBeUndefined();
-  expect(text(bad.lines)).toContain(navItems.map((n) => n.id).join(', '));
+  expect(text(bad.lines)).toContain(sectionIds.join(', '));
+  expect(runCommand('goto blog').action).toBeUndefined(); // a page, not a section
+});
+
+test('blog lists the newest post first and links to /blog', () => {
+  const { lines } = runCommand('blog');
+  expect(lines[0]).toEqual({ text: posts[0].title, tone: 'accent', href: posts[0].url });
+  expect(lines[lines.length - 1].href).toBe('/blog');
 });
 
 test('clear, theme, resume and sudo hire-me', () => {
