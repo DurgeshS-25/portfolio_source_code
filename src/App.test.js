@@ -46,3 +46,12 @@ test('terminal runs a command typed by the user', () => {
   fireEvent.keyDown(input, { key: 'Enter' });
   expect(screen.getByRole('log', { name: 'Terminal output' })).toHaveTextContent('Northeastern University');
 });
+
+test('home page teases the latest posts before Contact and links to /blog', () => {
+  render(<App />);
+  const teaser = screen.getByRole('region', { name: /latest writing/i });
+  expect(within(teaser).getByRole('heading', { level: 2 })).toHaveTextContent('04.Latest Writing');
+  expect(within(teaser).getAllByRole('article').length).toBeGreaterThan(0);
+  expect(within(teaser).getByRole('link', { name: /all posts/i })).toHaveAttribute('href', '/blog');
+  expect(screen.getByText("05. What's Next?")).toBeInTheDocument();
+});

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { latestPosts } from '../data/blog';
 import { education, experience, projects, sectionIds, usesSkill } from '../data/portfolio';
 import useActiveSection from '../hooks/useActiveSection';
 import useTheme from '../hooks/useTheme';
@@ -6,19 +7,25 @@ import Contact from './Contact';
 import EducationTimeline from './EducationTimeline';
 import ExperienceCard from './ExperienceCard';
 import Hero from './Hero';
+import LatestPosts from './LatestPosts';
 import ProjectCard from './ProjectCard';
 import Section from './Section';
 import SiteLayout from './SiteLayout';
 
-// Sections after "about" get numbered headings (01., 02., ...) in nav order.
-const sectionNumber = (id) => String(sectionIds.indexOf(id)).padStart(2, '0');
+// Page order: the nav's sections, plus the blog teaser (not a nav item) before Contact when there are posts.
+const pageSections = latestPosts(1).length
+  ? sectionIds.flatMap((id) => (id === 'contact' ? ['writing', id] : [id]))
+  : sectionIds;
+
+// Sections after "about" get numbered headings (01., 02., ...) in page order.
+const sectionNumber = (id) => String(pageSections.indexOf(id)).padStart(2, '0');
 
 const prefersReducedMotion = () =>
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
 const Portfolio = () => {
   const { isDark, toggleTheme } = useTheme();
-  const [activeSection, setActiveSection] = useActiveSection(sectionIds);
+  const [activeSection, setActiveSection] = useActiveSection(pageSections);
   // Skill chip selected in the Technical Stack card; dims work that doesn't use it.
   const [selectedSkill, setSelectedSkill] = useState(null);
 
@@ -90,6 +97,8 @@ const Portfolio = () => {
           ))}
         </div>
       </Section>
+
+      <LatestPosts number={sectionNumber('writing')} />
 
       <Contact number={sectionNumber('contact')} />
     </SiteLayout>
