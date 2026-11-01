@@ -16,6 +16,7 @@ export const profile = {
   resume: 'https://drive.google.com/file/d/1tdaY9bh36MepJ3EtwMQkw_HhABttV6I7/view?usp=sharing',
   github: 'https://github.com/DurgeshS-25',
   linkedin: 'https://www.linkedin.com/in/durgesh-s/',
+  medium: 'https://medium.com/@durgeshss25',
   contactBlurb:
     "I'm currently seeking roles in Software Development and Backend Engineering. " +
     "Let's connect if you have an opportunity or just want to chat.",

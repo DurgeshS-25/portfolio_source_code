@@ -60,29 +60,44 @@ const Header = ({ activeSection, onNavigate, isDark, onToggleTheme }) => {
     setIsMenuOpen(false);
   };
 
+  // Section items scroll in place when the page provides `onNavigate` (the home page). Page items
+  // (those with an `href`, like Blog), and every item on pages without sections, are plain links.
+  const target = ({ id, href }) => {
+    const link = href ?? (onNavigate ? null : `/#${id}`);
+    return link
+      ? { isLink: true, props: { href: link } }
+      : { isLink: false, props: { type: 'button', onClick: () => navigate(id) } };
+  };
+
+  const ariaCurrent = ({ id, href }) => (activeSection === id ? (href ? 'page' : 'location') : undefined);
+
+  const logo = target({ id: 'about', href: onNavigate ? undefined : '/' });
+  const Logo = logo.isLink ? 'a' : 'button';
+
   return (
     <header className="w-full sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-stone-950/80 border-b border-stone-200 dark:border-stone-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <button
-            type="button"
-            onClick={() => navigate('about')}
+          <Logo
+            {...logo.props}
             className={`group font-mono font-bold text-lg tracking-tight ${accent}`}
-            aria-label="Back to top"
+            aria-label={logo.isLink ? 'Home' : 'Back to top'}
           >
             ~/durgesh
             <span className="terminal-cursor ml-0.5 opacity-70" aria-hidden="true">_</span>
-          </button>
+          </Logo>
 
           <nav aria-label="Primary" className="hidden md:flex items-center space-x-1">
-            {navItems.map(({ id, label }) => {
+            {navItems.map((item) => {
+              const { id, label } = item;
               const isActive = activeSection === id;
+              const { isLink, props } = target(item);
+              const Item = isLink ? 'a' : 'button';
               return (
-                <button
+                <Item
                   key={id}
-                  type="button"
-                  onClick={() => navigate(id)}
-                  aria-current={isActive ? 'location' : undefined}
+                  {...props}
+                  aria-current={ariaCurrent(item)}
                   className={`relative px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     isActive ? accent : `${muted} hover:text-stone-900 dark:hover:text-stone-100`
                   }`}
@@ -96,7 +111,7 @@ const Header = ({ activeSection, onNavigate, isDark, onToggleTheme }) => {
                     />
                   )}
                   <span className="relative">{label}</span>
-                </button>
+                </Item>
               );
             })}
             <div className="pl-3">
@@ -132,22 +147,25 @@ const Header = ({ activeSection, onNavigate, isDark, onToggleTheme }) => {
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
             <div className="px-4 py-3 space-y-2">
-              {navItems.map(({ id, label }, i) => (
-                <motion.button
-                  key={id}
-                  type="button"
-                  onClick={() => navigate(id)}
-                  aria-current={activeSection === id ? 'location' : undefined}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.04 * i }}
-                  className={`w-full px-3 py-2 rounded-md text-left transition-colors ${
-                    activeSection === id ? 'bg-emerald-700 text-white' : hoverBg
-                  }`}
-                >
-                  {label}
-                </motion.button>
-              ))}
+              {navItems.map((item, i) => {
+                const { isLink, props } = target(item);
+                const Item = isLink ? motion.a : motion.button;
+                return (
+                  <Item
+                    key={item.id}
+                    {...props}
+                    aria-current={ariaCurrent(item)}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * i }}
+                    className={`block w-full px-3 py-2 rounded-md text-left transition-colors ${
+                      activeSection === item.id ? 'bg-emerald-700 text-white' : hoverBg
+                    }`}
+                  >
+                    {item.label}
+                  </Item>
+                );
+              })}
             </div>
           </motion.nav>
         )}
