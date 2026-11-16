@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { FileText, Github, Linkedin } from 'lucide-react';
 import { profile } from '../data/portfolio';
+import Doodles from './Doodles';
+import FuelRow from './FuelRow';
 import Section from './Section';
 import Skills from './Skills';
 import Terminal from './Terminal';
@@ -72,6 +74,7 @@ const HeroBackground = () => (
   <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
     <div className="absolute inset-0 hero-grid" />
     <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] max-w-full rounded-full hero-glow" />
+    <Doodles pattern="hero" />
   </div>
 );
 
@@ -131,6 +134,10 @@ const Hero = ({ onNavigate, onToggleTheme, selectedSkill, onSelectSkill }) => (
             <Linkedin size={16} className="mr-2" aria-hidden="true" />
             LinkedIn
           </motion.a>
+        </motion.div>
+
+        <motion.div variants={item}>
+          <FuelRow />
         </motion.div>
       </motion.div>
 

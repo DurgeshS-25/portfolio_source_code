@@ -1,16 +1,35 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { CodeXml, Coffee, Donut, Pizza } from 'lucide-react';
 import { formatDate, sourceMeta } from '../data/blog';
 import Reveal from './Reveal';
 import { accent, muted } from './styles';
 
+// Illustrated covers for posts without an image, picked per post so a post always gets the same one.
+const covers = [
+  { icon: Coffee, tone: 'text-amber-700 dark:text-amber-400', glow: 'from-amber-500/25' },
+  { icon: Pizza, tone: 'text-orange-700 dark:text-orange-400', glow: 'from-orange-500/25' },
+  { icon: Donut, tone: 'text-pink-700 dark:text-pink-400', glow: 'from-pink-500/25' },
+];
+
+const hash = (s) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 0);
+
 // Shown when a post has no image, or its image fails to load.
-const CoverFallback = ({ label }) => (
-  <div className="relative h-full w-full bg-gradient-to-br from-emerald-700/25 via-stone-100 to-stone-200 dark:from-emerald-500/20 dark:via-stone-900 dark:to-stone-800">
-    <div className="hero-grid absolute inset-0" />
-    <span className={`absolute bottom-3 left-4 font-mono text-sm ${accent}`}>~/{label.toLowerCase()}</span>
-  </div>
-);
+const CoverFallback = ({ id, label }) => {
+  const { icon: Icon, tone, glow } = covers[hash(id) % covers.length];
+  return (
+    <div className={`relative h-full w-full bg-gradient-to-br ${glow} via-stone-100 to-stone-200 dark:via-stone-900 dark:to-stone-800`}>
+      <div className="hero-grid absolute inset-0" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110">
+          <Icon size={72} strokeWidth={1.25} className={tone} />
+          <CodeXml size={28} strokeWidth={1.75} className={`absolute -right-6 -bottom-2 ${accent}`} />
+        </div>
+      </div>
+      <span className={`absolute bottom-3 left-4 font-mono text-sm ${accent}`}>~/{label.toLowerCase()}</span>
+    </div>
+  );
+};
 
 const SourceBadge = ({ label }) => (
   <span className="px-2 py-0.5 rounded font-mono text-xs bg-emerald-500/10 ring-1 ring-emerald-500/30 text-emerald-700 dark:text-emerald-400">
@@ -44,7 +63,7 @@ const PostCard = ({ id, title, url, publishedAt, excerpt, coverImage, tags, sour
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <CoverFallback label={label} />
+            <CoverFallback id={id} label={label} />
           )}
         </div>
 

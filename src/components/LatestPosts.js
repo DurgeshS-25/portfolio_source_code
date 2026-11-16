@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { latestPosts } from '../data/blog';
 import blogMeta from '../data/blogMeta.json';
+import Doodles from './Doodles';
 import { PostGrid } from './PostCard';
 import Section from './Section';
 import { btnSecondary } from './styles';
@@ -9,7 +10,7 @@ import { btnSecondary } from './styles';
 const LatestPosts = ({ number, posts = latestPosts(3) }) => {
   if (!posts.length) return null;
   return (
-    <Section id="writing" number={number} title="Latest Writing">
+    <Section id="writing" number={number} title="Latest Writing" background={<Doodles pattern="left" />}>
       <PostGrid posts={posts} />
       <div className="mt-10 text-center">
         <a href={blogMeta.path} className={`${btnSecondary} px-5 py-2.5 group`}>

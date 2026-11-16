@@ -55,3 +55,9 @@ test('home page teases the latest posts before Contact and links to /blog', () =
   expect(within(teaser).getByRole('link', { name: /all posts/i })).toHaveAttribute('href', '/blog');
   expect(screen.getByText("05. What's Next?")).toBeInTheDocument();
 });
+
+test('hero lists what fuels the code', () => {
+  render(<App />);
+  const fuel = screen.getByRole('list', { name: 'Fuelled by' });
+  expect(within(fuel).getAllByRole('listitem').map((li) => li.textContent)).toEqual(['coffee', 'pizza', 'sweets', 'code']);
+});

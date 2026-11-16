@@ -47,3 +47,12 @@ test('tab completion completes unique commands and section names', () => {
   expect(complete('goto ed')).toBe('goto education');
   expect(complete('c')).toBeNull(); // ambiguous: cd, clear, contact
 });
+
+test('coffee, pizza and sweets refuel without side effects', () => {
+  ['coffee', 'pizza', 'sweets'].forEach((cmd) => {
+    const result = runCommand(cmd);
+    expect(result.lines.length).toBeGreaterThan(0);
+    expect(result.action).toBeUndefined();
+  });
+  expect(text(runCommand('help').lines)).toContain('coffee | pizza | sweets');
+});

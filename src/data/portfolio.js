@@ -31,6 +31,15 @@ export const navItems = [
   { id: 'contact', label: 'Contact' },
 ];
 
+// What keeps the code coming: the hero's "fuelled by" row and the terminal's food commands.
+// `icon` keys map to components in src/components/Doodles.js.
+export const fuel = [
+  { id: 'coffee', label: 'coffee', icon: 'coffee' },
+  { id: 'pizza', label: 'pizza', icon: 'pizza' },
+  { id: 'sweets', label: 'sweets', icon: 'donut' },
+  { id: 'code', label: 'code', icon: 'code' },
+];
+
 // Items with an `href` are separate pages; the rest are sections on the home page.
 export const sectionIds = navItems.filter((item) => !item.href).map((item) => item.id);
 

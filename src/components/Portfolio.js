@@ -5,6 +5,7 @@ import useActiveSection from '../hooks/useActiveSection';
 import useTheme from '../hooks/useTheme';
 import Contact from './Contact';
 import EducationTimeline from './EducationTimeline';
+import Doodles from './Doodles';
 import ExperienceCard from './ExperienceCard';
 import Hero from './Hero';
 import LatestPosts from './LatestPosts';
@@ -66,7 +67,7 @@ const Portfolio = () => {
         onSelectSkill={setSelectedSkill}
       />
 
-      <Section id="experience" number={sectionNumber('experience')} title="Experience">
+      <Section id="experience" number={sectionNumber('experience')} title="Experience" background={<Doodles pattern="left" />}>
         <div className="space-y-6">
           {experience.map((job) => (
             <ExperienceCard
@@ -83,7 +84,7 @@ const Portfolio = () => {
         <EducationTimeline items={education} />
       </Section>
 
-      <Section id="projects" number={sectionNumber('projects')} title="Featured Work">
+      <Section id="projects" number={sectionNumber('projects')} title="Featured Work" background={<Doodles pattern="right" />}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <ProjectCard

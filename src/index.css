@@ -122,6 +122,28 @@ body {
   50% { opacity: 0; }
 }
 
+/* Background coffee / food / code doodles drift and tilt slowly (see Doodles). */
+.doodle {
+  transform: rotate(var(--doodle-rotate, 0deg));
+  animation: doodle-float 11s ease-in-out infinite alternate;
+}
+
+@keyframes doodle-float {
+  from { transform: translateY(0) rotate(var(--doodle-rotate, 0deg)); }
+  to { transform: translateY(-14px) rotate(calc(var(--doodle-rotate, 0deg) + 8deg)); }
+}
+
+/* Playful wiggle on hover for the "fuelled by" chips. */
+.wiggle:hover svg {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  25% { transform: rotate(-14deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-6deg); }
+}
+
 /* Theme switch: the new theme grows out of the toggle as a circle (see useTheme). */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -138,7 +160,9 @@ body {
   .hero-glow,
   .avatar-ring,
   .glow-card::before,
-  .terminal-cursor {
+  .terminal-cursor,
+  .doodle,
+  .wiggle:hover svg {
     animation: none !important;
   }
 }
