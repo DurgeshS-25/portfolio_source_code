@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { Coffee, ExternalLink } from 'lucide-react';
 import { posts as allPosts } from '../data/blog';
 import blogMeta from '../data/blogMeta.json';
 import { profile } from '../data/portfolio';
 import useTheme from '../hooks/useTheme';
+import Doodles from './Doodles';
 import { PostGrid } from './PostCard';
 import Section from './Section';
 import SiteLayout from './SiteLayout';
@@ -19,8 +20,9 @@ const MediumLink = ({ children }) => (
 const EmptyState = () => (
   <div className={`${card} text-center`}>
     <p className="font-mono text-sm text-emerald-700 dark:text-emerald-500 mb-2">$ ls ~/blog</p>
+    <Coffee size={36} strokeWidth={1.5} className="mx-auto mb-3 text-amber-700 dark:text-amber-400" aria-hidden="true" />
     <p className="text-lg font-semibold mb-2">No posts yet</p>
-    <p className={`${muted} mb-6`}>New writing shows up here automatically once it's published.</p>
+    <p className={`${muted} mb-6`}>The first one is still brewing. New writing shows up here automatically once it's published.</p>
     <MediumLink>Visit Medium</MediumLink>
   </div>
 );
@@ -36,7 +38,7 @@ const BlogPage = ({ posts = allPosts }) => {
 
   return (
     <SiteLayout activeSection="blog" isDark={isDark} onToggleTheme={toggleTheme}>
-      <Section id="blog" title="Blog" headingAs="h1" width="max-w-6xl">
+      <Section id="blog" title="Blog" headingAs="h1" width="max-w-6xl" background={<Doodles pattern="scatter" />}>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 -mt-4 mb-10">
           <p className={`${muted} max-w-2xl`}>
             Notes on backend systems, data pipelines, and things I learned the hard way. Posts link out to

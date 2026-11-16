@@ -19,13 +19,14 @@ const COMMANDS = {
   resume: 'open my resume',
   github: 'open my GitHub',
   linkedin: 'open my LinkedIn',
+  'coffee | pizza | sweets': 'refuel',
   theme: 'toggle light/dark theme',
   clear: 'clear the terminal (Ctrl+L)',
 };
 
 export const commandNames = [
   'help', 'whoami', 'ls', 'goto', 'cd', 'skills', 'experience', 'projects', 'education',
-  'blog', 'contact', 'resume', 'github', 'linkedin', 'theme', 'clear', 'sudo',
+  'blog', 'contact', 'resume', 'github', 'linkedin', 'coffee', 'pizza', 'sweets', 'theme', 'clear', 'sudo',
 ];
 
 const hireMeUrl = `mailto:${profile.email}?subject=${encodeURIComponent("Let's talk about a role")}`;
@@ -150,6 +151,27 @@ export const runCommand = (raw) => {
       return open('GitHub', profile.github);
     case 'linkedin':
       return open('LinkedIn', profile.linkedin);
+    case 'coffee':
+      return {
+        lines: [
+          { text: 'brewing… [████████░░] 80%', tone: 'muted' },
+          { text: '☕ ready. compiling thoughts at full speed.', tone: 'accent' },
+        ],
+      };
+    case 'pizza':
+      return {
+        lines: [
+          { text: 'POST /order {"size": "large", "slices": 8}', tone: 'muted' },
+          { text: '🍕 201 Created. ETA: one more bug fix.', tone: 'accent' },
+        ],
+      };
+    case 'sweets':
+      return {
+        lines: [
+          { text: 'checking cache for 🍩 🍪 🍰 …', tone: 'muted' },
+          { text: 'cache hit: sugar rush unlocked. productivity +10.', tone: 'accent' },
+        ],
+      };
     case 'theme':
       return { lines: [{ text: 'Toggling theme…', tone: 'muted' }], action: { type: 'theme' } };
     case 'clear':

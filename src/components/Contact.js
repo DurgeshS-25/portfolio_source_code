@@ -1,11 +1,12 @@
 import { Linkedin, Mail } from 'lucide-react';
 import { profile } from '../data/portfolio';
+import Doodles from './Doodles';
 import Reveal from './Reveal';
 import Section from './Section';
 import { accent, btnPrimary, btnSecondary, card, muted } from './styles';
 
 const Contact = ({ number }) => (
-  <Section id="contact">
+  <Section id="contact" background={<Doodles pattern="scatter" />}>
     <Reveal className="text-center mb-12">
       <p className={`font-mono text-sm ${accent} mb-4`}>{number}. What's Next?</p>
       <h2 className="text-3xl font-bold mb-4 tracking-tight">Get In Touch</h2>
